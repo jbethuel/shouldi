@@ -1,0 +1,17 @@
+{
+  "name": "shouldi",
+  "private": true,
+  "license": "MIT",
+  "packageManager": "pnpm@12.2.1",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm --filter @shouldi/shared build && pnpm --filter \"./apps/*\" build",
+    "test": "pnpm --filter @shouldi/shared build && pnpm -r test",
+    "typecheck": "pnpm --filter @shouldi/shared build && pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}

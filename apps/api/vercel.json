@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "regions": ["iad1"],
+  "cleanUrls": true,
+  "buildCommand": "pnpm --filter @shouldi/shared build",
+  "functions": {
+    "api/assess.ts": {
+      "maxDuration": 60
+    }
+  }
+}
