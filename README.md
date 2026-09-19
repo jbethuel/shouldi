@@ -83,7 +83,7 @@ Environment variables (see `apps/api/.env.example`):
    ```
 
    Layer 2 (daily limits and the daily cost cap) is in the function code and uses Redis.
-6. **Chrome Web Store:** register a developer account ($5 one-time), upload the zip from `pnpm zip`, and fill in the Privacy tab from [PLAN.md §8](PLAN.md#8-chrome-web-store-declarations). After the store gives the extension its ID, set `ALLOWED_ORIGINS=chrome-extension://<id>` and redeploy.
+6. **Chrome Web Store:** upload the zip from `pnpm zip` and fill in each tab from [apps/extension/store/LISTING.md](apps/extension/store/LISTING.md). `ALLOWED_ORIGINS` is set to the store item ID and the owner's unpacked build.
 7. **Privacy policy:** when you change `apps/api/public/privacy.html`, update its effective date and redeploy.
 
 ## License

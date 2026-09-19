@@ -182,9 +182,11 @@ No Jev accuracy test set (decision). Unit tests cover code logic only.
 | `scripting` | Runs the text reader (Mozilla Readability) on that tab to find the main job text. |
 | `storage` | Keeps the resume, the name for removal, and the install ID on the user's computer, and the last result in memory. |
 | Remote code | No. All code is in the extension package. |
-| Data types | Personally identifiable information (resume text, IP address hash); Website content (job text). |
+| Data types | Personally identifiable information (resume text); Location (the store lists IP addresses here; the server keeps an IP hash for up to 24 hours); Website content (job text). |
 | Certifications | Not sold; not used for purposes other than the single purpose; not used to decide credit or loans. |
 | Privacy policy URL | `https://shouldiapply.vercel.app/privacy` |
+
+Paste-ready text for every dashboard field is in `apps/extension/store/LISTING.md`.
 
 Contact email: `jbethuel.dev@gmail.com`
 
