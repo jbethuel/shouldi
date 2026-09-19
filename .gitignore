@@ -11,3 +11,4 @@ build/
 .DS_Store
 .vercel
 apps/extension/store/.stage/
+coverage/

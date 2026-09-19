@@ -1,4 +1,4 @@
-// Draws the ShouldI icon (a check mark in a rounded square) as PNG files. Run: node scripts/make-icons.mjs
+// Draws the Should I Apply? icon (a check mark in a rounded square) as PNG files. Run: node scripts/make-icons.mjs
 // The 128 px icon keeps 96x96 artwork with 16 px of transparent padding, as the Chrome Web Store asks.
 import { writeFileSync } from "node:fs";
 import { deflateSync } from "node:zlib";

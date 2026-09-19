@@ -70,6 +70,6 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   forbidden: TRY_AGAIN_LATER,
   rate_limited: "Please wait one minute, then try again.",
   daily_limit: `You assessed many jobs today. You can assess more after ${TIME_PLACEHOLDER}.`,
-  busy: `ShouldI is very busy today. Please try again after ${TIME_PLACEHOLDER}.`,
+  busy: `We are very busy today. Please try again after ${TIME_PLACEHOLDER}.`,
   server_error: TRY_AGAIN_LATER,
 };

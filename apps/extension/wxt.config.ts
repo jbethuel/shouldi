@@ -5,10 +5,10 @@ export default defineConfig({
   outDir: "build",
   modules: ["@wxt-dev/module-react"],
   manifest: {
-    name: "ShouldI",
+    name: "Should I Apply?",
     description: "See how your resume matches a job.",
     // No host permissions: the API allows the extension through CORS.
     permissions: ["activeTab", "scripting", "storage"],
-    action: { default_title: "ShouldI" },
+    action: { default_title: "Should I Apply?" },
   },
 });

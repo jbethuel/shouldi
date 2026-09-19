@@ -68,8 +68,8 @@ export function App() {
   return (
     <main className="settings">
       <header>
-        <h1>ShouldI settings</h1>
-        <p className="muted">See how your resume matches a job.</p>
+        <p className="brand-line">Should I Apply?</p>
+        <h1>Settings</h1>
       </header>
 
       <section className="notice-card">

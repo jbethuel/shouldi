@@ -1,6 +1,6 @@
-# ShouldI — Plan
+# Should I Apply? — Plan
 
-ShouldI is a public Chrome extension. It shows how well the user's resume matches the job posting on the current page. The user's decisions below come from a design review that was written in ASD-STE100 Simplified Technical English.
+Should I Apply? is a public Chrome extension (first named "ShouldI"; renamed because the capital I reads as a lowercase l). It shows how well the user's resume matches the job posting on the current page. The user's decisions below come from a design review that was written in ASD-STE100 Simplified Technical English.
 
 Subtitle in the Chrome Web Store: **"See how your resume matches a job."**
 
@@ -141,12 +141,12 @@ Words never used: "fail," "reject," "unqualified," "poor," "weak," "skip," "not 
 | Situation | Message |
 |---|---|
 | No resume is saved | Add your resume to start. |
-| Chrome does not let extensions read the page | ShouldI cannot read this type of page. |
+| Chrome does not let extensions read the page | We cannot read this type of page. |
 | The page is not a job posting | We could not find a job posting on this page. Open a job posting, or select the job text, and try again. |
 | The job text was cut | We used the first part of the job text. |
 | Too many requests in one minute | Please wait one minute, then try again. |
 | Daily limit for the ID or the IP address | You assessed many jobs today. You can assess more after {time}. |
-| Total daily cost limit | ShouldI is very busy today. Please try again after {time}. |
+| Total daily cost limit | We are very busy today. Please try again after {time}. |
 | Network or server error | We cannot assess this job now. Please try again in a few minutes. |
 
 Daily limits reset at 00:00 UTC. `{time}` shows in the user's local time.
@@ -155,7 +155,7 @@ Daily limits reset at 00:00 UTC. `{time}` shows in the user's local time.
 
 - Vercel Function in a US region (`iad1`), at `shouldiapply.vercel.app` (`shouldi.vercel.app` belongs to another site).
 - Holds the TypeSafe API key and owns the Jev questions. The extension sends only `{ resumeText, jobText }` and an `X-Install-Id` header.
-- CORS: allows only the ShouldI extension origin(s).
+- CORS: allows only the Should I Apply? extension origin(s).
 - Rate limits:
   - **Layer 1 — Vercel Firewall:** 10 requests per minute per IP on `/api/assess`. Returns 429.
   - **Layer 2 — Upstash Redis:** 50 assessments/day per install ID, 200/day per IP hash, $5/day total cost. Keys expire at the next 00:00 UTC.

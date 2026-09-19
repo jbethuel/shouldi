@@ -2,7 +2,7 @@
 
 export const MESSAGES = {
   noResume: "Add your resume to start.",
-  cannotRead: "ShouldI cannot read this type of page.",
+  cannotRead: "We cannot read this type of page.",
   notJobPosting:
     "We could not find a job posting on this page. Open a job posting, or select the job text, and try again.",
   textCut: "We used the first part of the job text.",

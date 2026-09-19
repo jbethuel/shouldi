@@ -44,14 +44,14 @@ const DESIGN_JOB = `
 const SCENES = {
   "01-match": {
     headline: "See how your resume matches a job.",
-    sub: "Open ShouldI on a job posting. You get a clear match level and one line for each part of the job.",
+    sub: "Open the extension on a job posting. You get a clear match level and one line for each part of the job.",
     url: "careers.fernway.example/jobs/senior-frontend-engineer",
     job: FRONTEND_JOB(false),
     popup: "strong",
   },
   "02-preview": {
     headline: "You choose what gets assessed.",
-    sub: "ShouldI reads the page only when you click it. Select part of the page to assess just that text.",
+    sub: "It reads the page only when you click its icon. Select part of the page to assess just that text.",
     url: "careers.fernway.example/jobs/senior-frontend-engineer",
     job: FRONTEND_JOB(true),
     popup: "preview",
@@ -66,14 +66,14 @@ const SCENES = {
   },
   "04-privacy": {
     headline: "Your resume is saved only on your computer.",
-    sub: "Upload a PDF or paste the text. ShouldI keeps it in Chrome. Our server does not store it.",
-    url: "ShouldI settings",
+    sub: "Upload a PDF or paste the text. It is kept in Chrome. Our server does not store it.",
+    url: "Settings",
     settings: "",
   },
   "05-sent": {
     headline: "See exactly what is sent.",
     sub: "Email addresses, phone numbers, links, and your name are removed before anything leaves your computer.",
-    url: "ShouldI settings",
+    url: "Settings",
     settings: "&focus=preview",
   },
 };

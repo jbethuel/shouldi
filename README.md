@@ -1,12 +1,12 @@
-# ShouldI
+# Should I Apply?
 
-See how your resume matches a job. ShouldI is a Chrome extension. On a job posting, it shows an encouraging match label and one level for each criterion: skills, tasks, experience level, industry, and education. The assessment comes from [Jev](https://docs.typesafe.ai) (TypeSafe).
+See how your resume matches a job. Should I Apply? is a Chrome extension. On a job posting, it shows an encouraging match label and one level for each criterion: skills, tasks, experience level, industry, and education. The assessment comes from [Jev](https://docs.typesafe.ai) (TypeSafe).
 
 The full design and all decisions are in [PLAN.md](PLAN.md).
 
 ## Privacy in one paragraph
 
-The resume is saved only in Chrome on your computer. When you click **Assess**, the extension removes email addresses, phone numbers, links, and your name, then sends the resume text and the job text to the ShouldI API. The API sends them to TypeSafe and returns the result. The API does not save the text or write it to logs. No history is kept. See [the privacy policy](apps/api/public/privacy.html).
+The resume is saved only in Chrome on your computer. When you click **Assess**, the extension removes email addresses, phone numbers, links, and your name, then sends the resume text and the job text to the Should I Apply? API. The API sends them to TypeSafe and returns the result. The API does not save the text or write it to logs. No history is kept. See [the privacy policy](apps/api/public/privacy.html).
 
 ## Repository
 

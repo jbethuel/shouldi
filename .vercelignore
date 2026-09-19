@@ -5,3 +5,4 @@ apps/extension/build
 apps/extension/.wxt
 .agents
 .claude
+**/coverage

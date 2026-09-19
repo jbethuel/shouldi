@@ -69,9 +69,9 @@ describe("readResponse errors", () => {
 
   it("puts the local reset time into the busy message", () => {
     const retryAt = "2026-09-20T00:00:00.000Z";
-    const body = { error: { code: "busy", message: "ShouldI is very busy today. Please try again after {time}.", retryAt } };
+    const body = { error: { code: "busy", message: "We are very busy today. Please try again after {time}.", retryAt } };
     const outcome = readResponse(503, body);
-    expect(outcome).toEqual({ ok: false, message: `ShouldI is very busy today. Please try again after ${localTime(retryAt)}.` });
+    expect(outcome).toEqual({ ok: false, message: `We are very busy today. Please try again after ${localTime(retryAt)}.` });
     expect(JSON.stringify(outcome)).not.toContain("{time}");
   });
 });

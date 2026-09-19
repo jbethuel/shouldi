@@ -57,7 +57,7 @@ export function App() {
   return (
     <div className="popup">
       <header className="popup-header">
-        <span className="wordmark">ShouldI</span>
+        <span className="wordmark">Should I Apply?</span>
         <button type="button" className="btn-link small" onClick={() => void browser.runtime.openOptionsPage()}>
           Settings
         </button>
