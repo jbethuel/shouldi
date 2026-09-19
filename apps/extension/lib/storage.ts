@@ -6,6 +6,7 @@ import { browser } from "wxt/browser";
 
 export interface Profile {
   resumeText: string;
+  /** The user's name, found at the top of the resume when it is added, so it can be removed again before sending. */
   removalName: string;
 }
 

@@ -1,8 +1,8 @@
 import { MAX_RESUME_CHARS } from "@shouldi/shared";
-import { type ChangeEvent, useEffect, useMemo, useState } from "react";
+import { type ChangeEvent, type ClipboardEvent, useEffect, useMemo, useState } from "react";
 import { RESUME_NOTICE } from "../../lib/messages";
 import { pdfToText } from "../../lib/pdf";
-import { redact } from "../../lib/redact";
+import { findName, redact } from "../../lib/redact";
 import { deleteAllData, loadProfile, type Profile, saveProfile } from "../../lib/storage";
 
 const API_URL = (import.meta.env.WXT_API_URL as string | undefined) ?? "https://shouldiapply.vercel.app";
@@ -28,6 +28,21 @@ export function App() {
     [profile.resumeText, profile.removalName],
   );
 
+  /** Clean a new resume at once: find the name at the top, then remove it and the contact details. */
+  function addResume(text: string) {
+    setProfile((p) => {
+      const removalName = findName(text) || p.removalName;
+      return { resumeText: redact(text, removalName), removalName };
+    });
+  }
+
+  function onPaste(event: ClipboardEvent<HTMLTextAreaElement>) {
+    // A resume pasted into the empty box is a new resume. Other pastes are edits.
+    if (profile.resumeText.trim()) return;
+    event.preventDefault();
+    addResume(event.clipboardData.getData("text"));
+  }
+
   async function onFile(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
     event.target.value = "";
@@ -36,7 +51,7 @@ export function App() {
     try {
       const text = await pdfToText(file);
       if (!text) throw new Error("empty");
-      setProfile((p) => ({ ...p, resumeText: text }));
+      addResume(text);
       setStatus({ kind: "idle" });
     } catch {
       setStatus({
@@ -47,7 +62,7 @@ export function App() {
   }
 
   async function onSave() {
-    const next = { resumeText: profile.resumeText.trim(), removalName: profile.removalName.trim() };
+    const next = { resumeText: profile.resumeText.trim(), removalName: profile.removalName };
     await saveProfile(next);
     setProfile(next);
     setSaved(next);
@@ -72,24 +87,34 @@ export function App() {
         <h1>Settings</h1>
       </header>
 
-      <section className="notice-card">
-        <p>
-          <strong>{RESUME_NOTICE.removeTitle}</strong> {RESUME_NOTICE.removeBody}
-        </p>
-        <p>
-          <strong>{RESUME_NOTICE.staysTitle}</strong> {RESUME_NOTICE.staysBody}
-        </p>
-      </section>
-
       <section className="field">
-        <div className="field-head">
-          <label htmlFor="resume">Your resume</label>
+        <label htmlFor="resume">Your resume</label>
+        <div className="pdf-pick">
+          <span className="pdf-pick-icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="4" y="11" width="16" height="10" rx="2" />
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+            </svg>
+          </span>
+          <div className="pdf-pick-text">
+            <p className="pdf-pick-title">{RESUME_NOTICE.title}</p>
+            <p className="muted small">{RESUME_NOTICE.local}</p>
+            <p className="muted small">{RESUME_NOTICE.sent}</p>
+          </div>
           <label className="btn-secondary file-button">
             Choose a PDF
             <input type="file" accept="application/pdf,.pdf" onChange={(e) => void onFile(e)} />
           </label>
         </div>
-        <p className="muted small">Choose a PDF, or paste the text of your resume. You can correct the text.</p>
         {status.kind === "reading" && <p className="muted small">Reading the PDF on this computer…</p>}
         {status.kind === "error" && <p className="small error">{status.message}</p>}
         <textarea
@@ -97,24 +122,16 @@ export function App() {
           rows={16}
           value={profile.resumeText}
           onChange={(e) => setProfile((p) => ({ ...p, resumeText: e.target.value }))}
+          onPaste={onPaste}
           placeholder="Paste your resume here."
         />
-        <p className="muted small">
-          {length.toLocaleString()} / {MAX_RESUME_CHARS.toLocaleString()} characters
-          {length > MAX_RESUME_CHARS && " — only the first part is used."}
-        </p>
-      </section>
-
-      <section className="field">
-        <label htmlFor="name">Your name</label>
-        <p className="muted small">The extension removes this name from your resume before it sends it.</p>
-        <input
-          id="name"
-          type="text"
-          autoComplete="name"
-          value={profile.removalName}
-          onChange={(e) => setProfile((p) => ({ ...p, removalName: e.target.value }))}
-        />
+        <div className="resume-foot muted small">
+          <span>Review and adjust your resume here. Remove your address and other personal details.</span>
+          <span>
+            {length.toLocaleString()} / {MAX_RESUME_CHARS.toLocaleString()} characters
+            {length > MAX_RESUME_CHARS && " — only the first part is used."}
+          </span>
+        </div>
       </section>
 
       <div className="actions">

@@ -8,7 +8,8 @@ describe("messages", () => {
   });
 
   it("tell the user truthfully where the resume text goes", () => {
-    expect(RESUME_NOTICE.staysBody).toContain("sends the resume text without your contact details to our server");
-    expect(RESUME_NOTICE.staysBody).toContain("TypeSafe");
+    expect(RESUME_NOTICE.local).toContain("never uploads it to a server");
+    expect(RESUME_NOTICE.sent).toContain("sends the resume text below to our server");
+    expect(RESUME_NOTICE.sent).toContain("TypeSafe does not use it to train AI models");
   });
 });

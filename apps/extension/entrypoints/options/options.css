@@ -9,20 +9,35 @@
 .settings h1 { font-size: 24px; letter-spacing: -0.01em; }
 .settings h2 { font-size: 15px; }
 .brand-line { font-weight: 700; color: var(--accent); margin-bottom: 2px; }
-.notice-card {
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > label { font-weight: 600; }
+.pdf-pick {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  background: var(--accent-soft);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
 }
-.field { display: flex; flex-direction: column; gap: 6px; }
-.field > label, .field-head > label:first-child { font-weight: 600; }
-.field-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.file-button { display: inline-block; font-weight: 500; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; }
+.pdf-pick-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.pdf-pick-text { flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.pdf-pick-title { font-weight: 600; }
+.file-button { display: inline-block; flex: none; margin-left: auto; font-weight: 500; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; }
 .file-button input { display: none; }
-textarea, input[type="text"] {
+.resume-foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; }
+textarea {
   font: inherit;
   color: var(--fg);
   background: var(--surface);
