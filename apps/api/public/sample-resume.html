@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Sample resume | Should I Apply?</title>
+    <link rel="stylesheet" href="/site.css" />
+  </head>
+  <body>
+    <main>
+      <p class="muted">Sample resume for testing the Should I Apply? extension. Alex Rivera is not a real person.</p>
+      <h1>Sample resume</h1>
+      <ol>
+        <li>Copy the text below, or download the PDF.</li>
+        <li>
+          Open the extension's settings page. Paste the text into “Your resume”, or click “Choose a PDF”. Type
+          “Alex Rivera” into “Your name”, then click Save.
+        </li>
+        <li>Open the <a href="/sample-job">sample job posting</a>, click the extension icon, and click Assess.</li>
+      </ol>
+      <div class="actions">
+        <button type="button" id="copy">Copy text</button>
+        <a class="button-link" href="/sample-resume.pdf" download>Download PDF</a>
+      </div>
+      <pre id="resume">Alex Rivera
+alex.rivera@example.com · +1 415 555 0142 · linkedin.com/in/alexrivera
+Senior Frontend Engineer
+
+Experience
+Acme Payments — Senior Frontend Engineer, 2020 – 2026
+- Led a team of 4 engineers building the merchant dashboard in React and TypeScript.
+- Built a design system used by 6 product teams; cut page load time by 40%.
+- Worked with design on checkout flows for small businesses.
+
+BrightLedger — Frontend Engineer, 2017 – 2020
+- Built reporting screens with React, Redux, and D3.
+- Wrote end-to-end tests with Playwright.
+
+Skills
+TypeScript, React, Next.js, GraphQL, Playwright, accessibility (WCAG), design systems
+
+Education
+BS Computer Science</pre>
+    </main>
+    <script>
+      const button = document.getElementById("copy");
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(document.getElementById("resume").textContent);
+          button.textContent = "Copied";
+        } catch {
+          button.textContent = "Select the text and copy it";
+        }
+        setTimeout(() => (button.textContent = "Copy text"), 2000);
+      });
+    </script>
+  </body>
+</html>

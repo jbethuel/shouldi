@@ -106,21 +106,9 @@ Leave username and password empty.
 No account or login is needed.
 
 1. After install, the settings page opens (or click the extension icon, then "Settings").
-2. Paste this sample resume into "Your resume" and click Save:
-
-   Alex Rivera
-   alex.rivera@example.com · +1 415 555 0142
-   Senior Frontend Engineer
-   Experience
-   Acme Payments - Senior Frontend Engineer, 2020 - 2026
-   - Led a team of 4 engineers building the merchant dashboard in React and TypeScript.
-   - Built a design system used by 6 product teams.
-   BrightLedger - Frontend Engineer, 2017 - 2020
-   - Built reporting screens with React and Redux.
-   Skills: TypeScript, React, Next.js, GraphQL, accessibility (WCAG)
-   Education: BS Computer Science
-
-   Optional: type "Alex Rivera" in "Your name", then open "Show the text that we send". The name, email, and phone number show as [removed].
+2. Open the sample resume: https://shouldiapply.vercel.app/sample-resume
+   Click "Copy text" and paste it into "Your resume" on the settings page, or download the PDF and use "Choose a PDF". Type "Alex Rivera" in "Your name" and click Save.
+   Optional: open "Show the text that we send". The name, email, phone number, and link show as [removed].
 
 3. Open the sample job posting: https://shouldiapply.vercel.app/sample-job
 4. Click the extension icon. The popup shows the job text it found. Click "Assess".
