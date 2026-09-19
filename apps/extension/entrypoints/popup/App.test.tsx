@@ -92,7 +92,7 @@ describe("popup", () => {
     expect(await screen.findByText("Good match")).toBeTruthy();
     const [request, installId] = vi.mocked(requestAssessment).mock.calls[0]!;
     expect(request.jobText).toBe(JOB_TEXT);
-    expect(request.resumeText).toBe("[removed]\n[removed]\nSenior engineer, React.");
+    expect(request.resumeText).toBe("Senior engineer, React.");
     expect(installId).toMatch(/^[0-9a-f-]{36}$/);
 
     const items = screen.getAllByRole("listitem").map((li) => li.textContent);

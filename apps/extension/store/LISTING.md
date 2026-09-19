@@ -69,7 +69,7 @@ Used with activeTab to run the extension's own text reader (Mozilla Readability,
 **storage justification**
 
 ```
-chrome.storage.local keeps the user's resume text, the name they enter for removal, and a random install ID on their computer, so they do not have to add their resume each time. chrome.storage.session keeps the last result for each tab in memory only, so reopening the popup does not send a new request; Chrome clears it when the browser closes. The user can delete everything with "Delete all my data" on the settings page.
+chrome.storage.local keeps the user's resume text, the name found at the top of it (so the name can be removed before anything is sent), and a random install ID on their computer, so they do not have to add their resume each time. chrome.storage.session keeps the last result for each tab in memory only, so reopening the popup does not send a new request; Chrome clears it when the browser closes. The user can delete everything with "Delete all my data" on the settings page.
 ```
 
 **Remote code:** No, I am not using remote code.
@@ -107,8 +107,8 @@ No account or login is needed.
 
 1. After install, the settings page opens (or click the extension icon, then "Settings").
 2. Open the sample resume: https://shouldiapply.vercel.app/sample-resume
-   Click "Copy text" and paste it into "Your resume" on the settings page, or download the PDF and use "Choose a PDF". Type "Alex Rivera" in "Your name" and click Save.
-   Optional: open "Show the text that we send". The name, email, phone number, and link show as [removed].
+   Click "Copy text" and paste it into "Your resume" on the settings page, or download the PDF and use "Choose a PDF". Click Save.
+   The resume box no longer has the name, email, phone number, or link.
 
 3. Open the sample job posting: https://shouldiapply.vercel.app/sample-job
 4. Click the extension icon. The popup shows the job text it found. Click "Assess".

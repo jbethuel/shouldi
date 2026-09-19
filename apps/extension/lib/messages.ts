@@ -11,10 +11,8 @@ export const MESSAGES = {
 } as const;
 
 export const RESUME_NOTICE = {
-  removeTitle: "Remove your personal details before you save.",
-  removeBody:
-    "Remove your address and all other details that can identify you. The extension automatically removes email addresses, phone numbers, links, and the name in your settings.",
-  staysTitle: "Your resume stays on this computer.",
-  staysBody:
-    "When you assess a job, the extension sends the resume text without your contact details to our server. Our server sends it to TypeSafe for the assessment. Our server does not keep it. TypeSafe does not use it to train AI models.",
+  title: "Your PDF stays on this computer",
+  local:
+    "The extension reads the file here and never uploads it to a server. It removes your name, email addresses, phone numbers, and links.",
+  sent: "When you assess a job, the extension sends the resume text below to our server. Our server sends it to TypeSafe for the assessment. Our server does not keep it. TypeSafe does not use it to train AI models.",
 } as const;

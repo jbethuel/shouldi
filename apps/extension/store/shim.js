@@ -5,9 +5,8 @@
   const params = new URLSearchParams(location.search);
   const scene = params.get("scene") ?? "";
 
-  const RESUME = `Alex Rivera
-alex.rivera@example.com · +1 415 555 0142 · linkedin.com/in/alexrivera
-Senior Frontend Engineer
+  // Saved as the settings page leaves it: the name and contact lines are already removed.
+  const RESUME = `Senior Frontend Engineer
 
 Experience
 Acme Payments — Senior Frontend Engineer, 2020 – 2026
@@ -139,7 +138,7 @@ Requirements
       const details = document.querySelector("details");
       if (!details) return;
       details.open = true;
-      const top = document.querySelector("#name")?.closest(".field")?.getBoundingClientRect().top ?? 0;
+      const top = document.querySelector(".resume-foot")?.getBoundingClientRect().top ?? 0;
       window.scrollTo(0, window.scrollY + top - 24);
     }, 400);
   }
