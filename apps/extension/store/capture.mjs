@@ -86,6 +86,7 @@ try {
     browser.kill();
     await new Promise((resolve) => (browser.exitCode === null ? browser.once("exit", resolve) : resolve()));
     if (!written) throw new Error(`Chrome did not write ${shot.file}`);
+    await checkStoreFormat(file, width, height);
     console.log(`✔ ${shot.file} (${width}×${height})`);
   }
 } finally {
@@ -104,4 +105,13 @@ async function waitForFile(file, timeoutMs) {
     await sleep(300);
   }
   return false;
+}
+
+/** The store accepts JPEG or 24-bit PNG with no alpha, at the exact size. Fail loudly otherwise. */
+async function checkStoreFormat(file, width, height) {
+  const png = await readFile(file);
+  const [w, h, depth, colorType] = [png.readUInt32BE(16), png.readUInt32BE(20), png[24], png[25]];
+  if (w !== width || h !== height) throw new Error(`${file} is ${w}x${h}, expected ${width}x${height}`);
+  // Color type 2 = RGB (no alpha); 8 bits per channel = 24-bit color.
+  if (colorType !== 2 || depth !== 8) throw new Error(`${file} is not a 24-bit PNG without alpha (type ${colorType}, depth ${depth})`);
 }
