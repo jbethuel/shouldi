@@ -9,7 +9,8 @@
     "zip": "wxt zip",
     "typecheck": "wxt prepare && tsc --noEmit",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "store:images": "wxt build && node store/capture.mjs"
   },
   "dependencies": {
     "@mozilla/readability": "^0.6.0",

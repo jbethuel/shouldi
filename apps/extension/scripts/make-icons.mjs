@@ -1,4 +1,5 @@
 // Draws the ShouldI icon (a check mark in a rounded square) as PNG files. Run: node scripts/make-icons.mjs
+// The 128 px icon keeps 96x96 artwork with 16 px of transparent padding, as the Chrome Web Store asks.
 import { writeFileSync } from "node:fs";
 import { deflateSync } from "node:zlib";
 
@@ -37,7 +38,8 @@ function segment(px, py, ax, ay, bx, by) {
   return Math.hypot(px - (ax + t * dx), py - (ay + t * dy));
 }
 
-function draw(size) {
+function draw(size, artwork = size) {
+  const scale = artwork / size;
   const SS = 4;
   const stroke = size <= 16 ? 0.075 : 0.06;
   const raw = Buffer.alloc(size * (size * 4 + 1));
@@ -47,8 +49,9 @@ function draw(size) {
       let bg = 0, fg = 0;
       for (let sy = 0; sy < SS; sy++) {
         for (let sx = 0; sx < SS; sx++) {
-          const u = (x + (sx + 0.5) / SS) / size;
-          const v = (y + (sy + 0.5) / SS) / size;
+          // Map the pixel into artwork space; outside the artwork stays transparent.
+          const u = ((x + (sx + 0.5) / SS) / size - 0.5) / scale + 0.5;
+          const v = ((y + (sy + 0.5) / SS) / size - 0.5) / scale + 0.5;
           if (roundedSquare(u, v, 0.47, 0.2) <= 0) {
             bg++;
             const d = Math.min(segment(u, v, 0.28, 0.52, 0.43, 0.67), segment(u, v, 0.43, 0.67, 0.73, 0.35));
@@ -76,4 +79,7 @@ function draw(size) {
   ]);
 }
 
-for (const size of [16, 32, 48, 128]) writeFileSync(new URL(`../public/icon/${size}.png`, import.meta.url), draw(size));
+const ARTWORK = { 16: 16, 32: 32, 48: 48, 128: 96 };
+for (const [size, artwork] of Object.entries(ARTWORK)) {
+  writeFileSync(new URL(`../public/icon/${size}.png`, import.meta.url), draw(Number(size), artwork));
+}

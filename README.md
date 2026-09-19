@@ -37,7 +37,10 @@ cp .env.example .env   # set WXT_API_URL (default https://shouldiapply.vercel.ap
 pnpm dev               # opens Chrome with the extension loaded
 pnpm build             # output in build/chrome-mv3 (use "Load unpacked" in chrome://extensions)
 pnpm zip               # zip for the Chrome Web Store
+pnpm store:images      # Chrome Web Store screenshots and promo tiles in store/images (needs Google Chrome)
 ```
+
+`pnpm store:images` renders the real built popup and settings pages with invented sample data (see `store/shim.js`) and captures them with headless Chrome at the sizes the store asks for: five 1280×800 screenshots, the 440×280 small promo tile, and the 1400×560 marquee.
 
 ### API
 
@@ -81,7 +84,7 @@ Environment variables (see `apps/api/.env.example`):
 
    Layer 2 (daily limits and the daily cost cap) is in the function code and uses Redis.
 6. **Chrome Web Store:** register a developer account ($5 one-time), upload the zip from `pnpm zip`, and fill in the Privacy tab from [PLAN.md §8](PLAN.md#8-chrome-web-store-declarations). After the store gives the extension its ID, set `ALLOWED_ORIGINS=chrome-extension://<id>` and redeploy.
-7. **Privacy policy:** replace `{release date}` in `apps/api/public/privacy.html` before the release.
+7. **Privacy policy:** when you change `apps/api/public/privacy.html`, update its effective date and redeploy.
 
 ## License
 
