@@ -1,0 +1,65 @@
+name: Release
+
+# Push a tag such as v0.1.4 to build the Chrome Web Store zip and attach it to a GitHub Release.
+# The tag must match "version" in apps/extension/package.json. This workflow does not publish to
+# the Chrome Web Store and does not deploy the API.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Build the zip and publish the release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write # creates the release
+    steps:
+      - uses: actions/checkout@v7
+
+      # Installs the pnpm version from "packageManager" in package.json.
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # The store rejects a version it has already seen, so fail early on a wrong tag.
+      - name: Check that the tag matches the extension version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version=$(node -p "require('./apps/extension/package.json').version")
+          if [ "$TAG" != "v$version" ]; then
+            echo "::error::Tag $TAG does not match version $version in apps/extension/package.json. Raise the version, merge it, then tag again."
+            exit 1
+          fi
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      # Unit tests only; nothing calls the real TypeSafe API.
+      - name: Test
+        run: pnpm test
+
+      - name: Build the zip
+        run: |
+          pnpm --filter @shouldi/shared build
+          pnpm --filter @shouldi/extension zip
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" \
+            "apps/extension/build/shouldiextension-${TAG#v}-chrome.zip" \
+            --title "$TAG" \
+            --generate-notes \
+            --verify-tag
