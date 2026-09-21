@@ -42,6 +42,13 @@ pnpm store:images      # Chrome Web Store screenshots and promo tiles in store/i
 
 `pnpm store:images` renders the real built popup and settings pages with invented sample data (see `store/shim.js`) and captures them with headless Chrome at the sizes the store asks for: five 1280×800 screenshots, the 440×280 small promo tile, and the 1400×560 marquee.
 
+### Release
+
+1. Raise `version` in `apps/extension/package.json` and merge it to `main`.
+2. Push a tag with the same number: `git tag v0.1.4 && git push origin v0.1.4`.
+
+The Release workflow (`.github/workflows/release.yml`) checks that the tag matches the version, runs the typecheck and the tests, builds the zip with `pnpm zip`, and attaches `shouldiextension-<version>-chrome.zip` to a GitHub Release with generated notes. Upload that zip to the Chrome Web Store. The workflow does not publish to the store and does not deploy the API.
+
 ### API
 
 ```sh
@@ -83,7 +90,7 @@ Environment variables (see `apps/api/.env.example`):
    ```
 
    Layer 2 (daily limits and the daily cost cap) is in the function code and uses Redis.
-6. **Chrome Web Store:** upload the zip from `pnpm zip` and fill in each tab from [apps/extension/store/LISTING.md](apps/extension/store/LISTING.md). `ALLOWED_ORIGINS` is set to the store item ID and the owner's unpacked build.
+6. **Chrome Web Store:** upload the zip from `pnpm zip` (or from the GitHub Release) and fill in each tab from [apps/extension/store/LISTING.md](apps/extension/store/LISTING.md). `ALLOWED_ORIGINS` is set to the store item ID and the owner's unpacked build.
 7. **Privacy policy:** when you change `apps/api/public/privacy.html`, update its effective date and redeploy.
 
 ## License
