@@ -2,6 +2,8 @@
 
 See how your resume matches a job. Should I Apply? is a Chrome extension. On a job posting, it shows an encouraging match label and one level for each criterion: skills, tasks, experience level, industry, and education. The assessment comes from [Jev](https://docs.typesafe.ai) (TypeSafe).
 
+**Install:** [Should I Apply? on the Chrome Web Store](https://chromewebstore.google.com/detail/should-i-apply/ghpgfojflbhaakbbkjgmlbnnfhfpboej)
+
 ![Should I Apply? on a job posting. The popup shows a Strong match and one level each for skills, tasks, experience level, and industry.](apps/extension/store/images/screenshot-1-match.png)
 
 The full design and all decisions are in [PLAN.md](PLAN.md).
