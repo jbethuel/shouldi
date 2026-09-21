@@ -2,7 +2,21 @@
 
 See how your resume matches a job. Should I Apply? is a Chrome extension. On a job posting, it shows an encouraging match label and one level for each criterion: skills, tasks, experience level, industry, and education. The assessment comes from [Jev](https://docs.typesafe.ai) (TypeSafe).
 
+![Should I Apply? on a job posting. The popup shows a Strong match and one level each for skills, tasks, experience level, and industry.](apps/extension/store/images/screenshot-1-match.png)
+
 The full design and all decisions are in [PLAN.md](PLAN.md).
+
+## Screenshots
+
+| You choose what gets assessed | Honest, encouraging results |
+|---|---|
+| ![The popup shows the text that was selected on the job page, with an Assess button.](apps/extension/store/images/screenshot-2-preview.png) | ![The popup shows a Partial match with a level and one sentence for each criterion, and a tip on what to add to the resume.](apps/extension/store/images/screenshot-3-encouraging.png) |
+
+| Your resume stays on your computer | See exactly what is sent |
+|---|---|
+| ![The settings page, where the user chooses a PDF or pastes the resume text.](apps/extension/store/images/screenshot-4-privacy.png) | ![The settings page shows the resume text that is sent, without the name, email addresses, phone numbers, and links, and a Delete all my data button.](apps/extension/store/images/screenshot-5-sent.png) |
+
+The screenshots use invented sample data. Run `pnpm store:images` in `apps/extension` to regenerate them.
 
 ## Privacy in one paragraph
 
